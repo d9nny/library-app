@@ -1,8 +1,13 @@
 {
-  "firebase": "YOUR-APP-NAME",
+  "firebase use --add": "library-app-3c58e",
   "public": "dist",
   "rewrites": [{
     "source": "**",
     "destination": "/index.html"
-  }]
+  }],
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
 }
