@@ -4,33 +4,44 @@
 		
 		<h2>Contact</h2>
 		
+		{{#if responseMessage}}
+			<br/>
+			<div class='alert alert-success'>
+				<h4>Thank you! Your message has been sent.</h4>
+				<p>From: {{model.email}}</p>
+				<p>Message: {{model.message}}</p>
+				<p>Reference ID: {{model.id}}</p>
+			</div>
+
+		{{else}}
+
 		<div class='col-md-2'></div>
 		<div class='col-md-8'>
 
 			<br/><br/>
 			
+			<p>If you have any questions or feedback, please leave a message with your email.</p>
+
 			<form>
-				<div class='form-group form-group'>
+				<div class="form-group has-feedback {{if model.hasValidEmailAddress 'has-success'}}">
 					<label for='email' class=''>Email</label>
-					{{input type='email' value=email class='form-control' id='email' placeholder='Email'}}
+					{{input type='email' value=model.email class='form-control' id='email' placeholder='Email' autofocus='autofocus'}}
+					{{#if model.hasValidEmailAddress}}<span class='glyphicon glyphicon-ok form-control-feedback'></span>{{/if}}
 				</div>
 				<br/>
-				<div class='form-group form-group'>
+				<div class="form-group has-feedback {{if model.hasEnteredMessage 'has-success'}}">
 					<label for='message'>Message</label>
-					{{textarea value=message class='form-control' rows="7" id='message' placeholder='Message'}}
+					{{textarea value=model.message class='form-control' rows="7" id='message' placeholder='Message'}}
+					{{#if model.hasEnteredMessage}}<span class='glyphicon glyphicon-ok form-control-feedback'></span>{{/if}}
 				</div>
 				<br/>
-				<button class='btn btn-primary btn-default pull-right' disabled={{isDisabled}} {{action 'saveMessage'}}>Send</button>
+				<button class='btn btn-success pull-right' disabled={{modelisDisabled}} {{action 'saveMessage' model}}>Send</button>
 			</form>
 
 		</div>
+
+		{{/if}}
+
 	</div>
 
-	<br/>
-
-	{{#if responseMessage}}
-		<div class='alert alert-success'>{{responseMessage}}</div>
-	{{/if}}
 </div>
-
-{{outlet}}

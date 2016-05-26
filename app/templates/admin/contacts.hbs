@@ -1,0 +1,22 @@
+<h1>Contact Messages</h1>
+
+<br/>
+
+<table class='table table-bordered table-striped'>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Email</th>
+			<th>Message</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each model as |contact|}}
+			<tr>
+				<td>{{contact.id}}</td>
+				<td>{{contact.email}}</td>
+				<td>{{contact.message}}</td>
+			</tr>
+		{{/each}}
+	</tbody>
+</table>
